@@ -39,14 +39,25 @@ for temp in func:
 
 
 function = int(input('Choose highest power in function: '))
-while function > 0:
-    coefficient1 = int(input('Enter the coeffecient for the x^'+str(function)+' term: '))
-    function = function-1
-if function > 0: 
-    coefficient1 = int(input('Enter the coeffecient for the x^'+str(function)+' term: '))
-
-if __name__ == '__main__':
-    data = {}
-    data['coefficient'] = ''
+if function == 1:
+    coefficient1 = int(input('Enter the coeffecient for the x^1 term: '))
+    coefficient = int(input('Enter the constant: '))
+elif function == 2:
+    coefficient1 = int(input('Enter the coeffecient for the x^2 term: '))
+    coefficient2 = int(input('Enter the coeffecient for the x^1 term: '))
+    coefficient = int(input('Enter the constant: '))
+elif function == 3:
+    coefficient1 = int(input('Enter the coeffecient for the x^3 term: '))
+    coefficient2 = int(input('Enter the coeffecient for the x^2 term: '))
+    coefficient3 = int(input('Enter the coeffecient for the x^1 term: '))
+    coefficient = int(input('Enter the constant: '))
+elif function == 4:
+    coefficient1 = int(input('Enter the coeffecient for the x^4 term: '))
+    coefficient2 = int(input('Enter the coeffecient for the x^3 term: '))
+    coefficient3 = int(input('Enter the coeffecient for the x^2 term: '))
+    coefficient4 = int(input('Enter the coeffecient for the x^1 term: '))
+    coefficient = int(input('Enter the constant: '))
+elif function == 5:
+    
 
     
