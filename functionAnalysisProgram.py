@@ -42,12 +42,12 @@ range1 = int((rbound-lbound)/.001)
 x=float(lbound)
 fval = []
 deltx = 0.001
-while x <= rbound:
-    tot=0
-    for i in range(0,range1):
-        tot+=float(eval(function))
-    fval.append(tot)
+tot=0
+for i in range(0,range1):
+    tot+=float(eval(function))
     x+=0.001
+fval.append(tot)
+
     
 onederiv = []
 valonederiv = 0.0
