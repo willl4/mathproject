@@ -5,7 +5,7 @@ for temp in func:
     print(temp)
     
 """
-import math
+from math import *
 
 if __name__ == '__main__':
     data = {}
@@ -49,6 +49,7 @@ function = function.replace('pow','math.pow')
 lbound = float(input('Enter left bound: '))
 rbound = float(input('Enter right bound: '))
 
+#Evaluates the function the user entered for every 0.001 increment from the left bound to the right bound
 range1 = int((rbound-lbound)/0.001)
 x = float(lbound)
 fval = []
@@ -57,14 +58,16 @@ tot=0
 for i in range(0,range1):
     tot=float(eval(function))
     fval.append(tot)
-    x+=0.001
+    x+=0.001 
 
+#Evaluates the derivative of the function the user entered for every 0.001 increment from the left bound to the right bound by calculating the functions slope at these intervals
 onederiv = []
 valonederiv = 0.0
 for i in range(0,len(fval)-1):
     valonederiv = (fval[i+1]-fval[i])/deltx
     onederiv.append(valonederiv)
 
+#Evaluates the second derivative of the function the user entered for every 0.001 increment from the left bound to the right bound by calculating the first derivative's slope at these intervals
 twoderiv = []
 valtwoderiv = 0.0
 for i in range(0,len(onederiv)-1):
@@ -77,10 +80,15 @@ ispos = onederiv[0]>0
 rangestart=0
 max = []
 min = []
+
+#Evaluates whether the left bound is a min or max by determining whether the first derivative is positive (min) or negative (max) at this point
 if ispos:
     min.append([lbound,fval[0]])
 else:
     max.append([lbound,fval[0]])
+
+#Determines the intervals on which the function is increasing/decreasing by looking at the intervals on which the first derivative of the function is positive (increasing) or negative (decreasing)
+#Determines the max/min points of the function by looking at where the first derivative of the function changes from postive to negative (max) or negative to positive (min) and what the f(x) value is at this point
 for i in range(0,len(onederiv)-1):
     if onederiv[i] * onederiv[i+1] < 0:
         if ispos:
@@ -91,12 +99,17 @@ for i in range(0,len(onederiv)-1):
             min.append([(i*deltx)+lbound,fval[i]])
         ispos = not ispos
         rangestart=i+1
+
+#Determines whether the function is increasing or decreasing from the left/right bound of the function to first/last min or max value by determining whether the first derivative of the function is positive (increasing) or negative (decreasing) on these intervals
+#Evaluates whether the right bound is a min or max by determining whether the first derivative is positive (max) or negative (min) at this point
 if ispos:
     increase.append([(rangestart*deltx)+lbound,rbound])
     max.append([rbound,fval[len(fval)-1]])
 else:
     decrease.append([(rangestart*deltx)+lbound,rbound])
     min.append([rbound,fval[len(fval)-1]])
+
+#Determines which max/min values are absolute max/min by comparing the f(x) values of the function at max/min points
 abmax=max[0]
 abmin=min[0]
 for i in range(1,len(max)):
@@ -105,7 +118,9 @@ for i in range(1,len(max)):
 for i in range(1,len(min)):
     if min[i][1] < abmin[1]:
         abmin=min[i]
-        
+    
+#Determines the intervals on which the function is concave up/concave down by looking at the intervals on which the second derivative of the function is positive (concave up) or negative (concave down)
+#Determines the inflection points of the function by looking at where the second derivative of the function changes from postive to negative or negative to positive
 concaveup = []
 concavedown= []
 ispos = twoderiv[0]>0
@@ -121,6 +136,8 @@ for i in range(0,len(twoderiv)-1):
             inflectionpt.append([(i*deltx)+lbound,fval[i]])
         ispos = not ispos
         rangestart=i+1
+        
+#Determines whether the function is concave up or concave down from the left/right bound of the function to first/last inflection point by determining whether the second derivative of the function is positive (concave up) or negative (concave down) on these intervals
 if ispos:
     concaveup.append([(rangestart*deltx)+lbound,rbound])
 else:
